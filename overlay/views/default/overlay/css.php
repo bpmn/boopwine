@@ -4,152 +4,120 @@
  */
 
 
-$transparent = 'mod/overlay/vendors/jquery_tools/graphics/transparent.png';
-$transparent = elgg_normalize_url($transparent);
 
-$white = 'mod/overlay/vendors/jquery_tools/graphics/white_big.png';
-$white = elgg_normalize_url($white);
 
-$blue = 'mod/overlay/vendors/jquery_tools/graphics/blue.png';
-$blue = elgg_normalize_url($blue);
+$loader = 'mod/overlay/vendors/nyromodal/graphics/ajaxLoader.gif';
+$loader = elgg_normalize_url($loader);
 
-$close = 'mod/overlay/vendors/jquery_tools/graphics/close.png';
+$close = 'mod/overlay/vendors/nyromodal/graphics/close.gif';
 $close = elgg_normalize_url($close);
 ?>
 
-.tooltip {
-	display: none;
-	background: transparent url(<?php echo $img; ?>);
-	font-size: 12px;
-	height: 70px;
-	width: 160px;
-	padding: 25px;
-	color: #fff;
+.nyroModalBg {
+	position: fixed;
+	overflow: hidden;
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: 100%;
+	background: #000;
+	opacity: 0.7;
+        //z-index: 0;
 }
-
-/* use a semi-transparent image for the overlay */
-#overlay {
-    //background-image:url(<?php echo $white; ?>);
-
-   //height:700px;
+.nmReposition {
+	position: absolute;
+        z-index: 20000; //z-index de elgg-page-topbar= 9000
 }
-
-/* container for external content. uses vertical scrollbar, if needed */
-div.contentWrap {
-        height:580px;
-        overflow-y:auto;
-        background: white;
+.nyroModalCloseButton {
+	top: -13px;
+	right: -13px;
+	width: 12px;
+	height: 12px;
+	text-indent: -9999em;
+	background: url(<?php echo $close ?>);
+}
+.nyroModalTitle {
+	top: -26px;
+	left: 0;
+	margin: 0;
+    font-size: 1.1em;
+	color: #ddd;
+}
+.nyroModalCont {
+	position: absolute;
+	border: 4px solid #777;
+	margin: 25px;
+	background: #fff;
         
-} 
-
-
-/* the overlayed element */
-.apple_overlay {
-    /* initially overlay is hidden */
-    display:none;
-    /* growing background image */
-    background-image:url(<?php echo $white; ?>);
-  
-    /*
-    width after the growing animation finishes
-    height is automatically calculated
-    */
-    width:970px;
-    height:600px;
-    /* some padding to layout nested elements nicely */
-    padding:35px;
-    /* a little styling */
-    font-size:13px;
 }
-
-
-
-/* default close button positioned on upper right corner */
-.apple_overlay .close {
-        background-image:url(<?php echo $close; ?>);
-        position:absolute; right:5px; top:5px;
-        cursor:pointer;
-        height:35px;
-        width:35px;
+.nyroModalCont iframe {
+	width: 600px;
+	height: 400px;
 }
-
-
-/* root element for tabs */
-ul#tabb {
-    list-style:none;
-    margin:0 !important;
-    padding:0;
-    border-bottom:1px solid #666;
-    height:25px;
-    }
-/* single tab */
-ul#tabb li {
-    float:left;
-    text-indent:0;
-    padding:0;
-    margin:0 !important;
-    list-style-image:none !important;
+.nyroModalError {
+	border: 4px solid red;
+	color: red;
+	width: 250px;
+	height: 250px;
 }
-/* link inside the tab. uses a background image */
-ul#tabb a {
-    background: url(<?php echo $blue; ?>) no-repeat -420px 0;
-    font-size:11px;
-    display:block;
-    height: 25px;
-    line-height:25px;
-   // width: 134px;
-    width: 70px;
-    text-align:center;
-    text-decoration:none;
-    color:#333;
-    padding:0px;
-    margin:0px;
-    position:relative;
-    top:1px;
+.nyroModalError div {
+	min-width: 0;
+	min-height: 0;
+	padding: 10px;
 }
-ul#tabb a:active {
-    outline:none;
-} 
- 
-
-
-/* when mouse enters the tab move the background image */
-ul#tabb a:hover {
-    background-position: -420px -31px;
-    color:#fff;
+.nyroModalLink, .nyroModalDom, .nyroModalForm, .nyroModalFormFile {
+	position: relative;
+	padding: 10px;
+	min-height: 250px;
+	min-width: 250px;
+	max-width: 1000px;
 }
-/* active tab uses a class name "current". its highlight is also done by moving the background image. */
-ul#tabb a.current, ul#tabb a.current:hover, ul#tabb li.current a {
-    background-position: -420px -62px;
-    cursor:default !important;
-    color:#000 !important;
+.nyroModalImage, .nyroModalSwf, .nyroModalIframe, .nyroModalIframeForm {
+	position: relative;
+	overflow: hidden;
 }
-/* Different widths for tabs: use a class name: w1, w2, w3 or w2 */
-/* width 1 */
-ul#tabb a.s { background-position: -553px 0; width:81px; }
-ul#tabb a.s:hover { background-position: -553px -31px; }
-ul#tabb a.s.current { background-position: -553px -62px; }
-/* width 2 */
-ul#tabb a.l { background-position: -248px -0px; width:174px; }
-ul#tabb a.l:hover { background-position: -248px -31px; }
-ul#tabb a.l.current { background-position: -248px -62px; }
-/* width 3 */
-ul#tabb a.xl { background-position: 0 -0px; width:248px; }
-ul#tabb a.xl:hover { background-position: 0 -31px; }
-ul#tabb a.xl.current { background-position: 0 -62px; }
-
-/* initially all panes are hidden */
-.panes .pane {
-    display:none;
-} 
-
-/* tab pane styling */
-.panes div {
-    display:none;
-    //padding:15px 10px;
-    border:1px solid #999;
-    border-top:0;
-   // height:100px;
-    font-size:12px;
-    background-color:#fff;
+.nyroModalImage img {
+    vertical-align: top;
+}
+.nyroModalHidden {
+	left: -9999em;
+	top: -9999em;
+}
+.nyroModalLoad {
+	position: absolute;
+	width: 100px;
+	height: 100px;
+	background: #fff url(<?php echo $loader ?>) no-repeat center;
+	padding: 0;
+}
+.nyroModalPrev, .nyroModalNext {
+	outline: none;
+	position: absolute;
+	top: 0;
+	height: 60%;
+	width: 150px;
+	min-height: 50px;
+	max-height: 300px;
+	cursor: pointer;
+	text-indent: -9999em;
+	background: transparent url('data:image/gif;base64,AAAA') left 20% no-repeat;
+}
+.nyroModalImage .nyroModalPrev, .nyroModalImage .nyroModalNext {
+	height: 100%;
+	width: 40%;
+	max-height: none;
+}
+.nyroModalPrev {
+	left: 0;
+}
+.nyroModalPrev:hover {
+	background-image: url(../img/prev.gif);
+}
+.nyroModalNext {
+	right: 0;
+	background-position: right 20%;
+}
+.nyroModalNext:hover {
+	background-position: right 20%;
+	background-image: url(../img/next.gif);
 }

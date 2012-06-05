@@ -20,18 +20,10 @@ echo elgg_view('input/dropdown', array(
                             ));
 
 
-// Morceau de code nécessaire pour le JavaScript Overlay.
 ?>
 
 
 
-
-<!-- overlayed element -->
-<div class="apple_overlay" id="overlay">
-<!-- the external content is loaded inside this tag -->
-<a class="close"></a>
-<div class="contentWrap"></div>
-</div> 
 
 
             

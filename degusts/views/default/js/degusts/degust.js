@@ -9,7 +9,7 @@ elgg.provide('elgg.degust');
 elgg.degust.init = function() {
 	// only apply this to acronym tags
 	
-        $( "#tabb" ).tabs();
+        	$( "#tabs" ).tabs();
 }
 
 elgg.register_hook_handler('init', 'system', elgg.degust.init);

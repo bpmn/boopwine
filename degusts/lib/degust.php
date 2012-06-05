@@ -85,7 +85,10 @@ function degust_handle_owned_page() {
  * @param int $guid
  */
 function degust_handle_edit_page($page, $guid = 0) {
-	gatekeeper();
+      //  $url = 'mod/degusts/views/default/js/degusts/degust.js';
+	//elgg_register_js('elgg.degust', $url, 'footer');
+	//elgg_load_js('elgg.degust');
+        gatekeeper();
 	$guid=(int)get_input(entity_guid);
 	if ($page == 'add') {
 		$wine = get_entity($guid);
@@ -144,9 +147,9 @@ function degust_handle_edit_page($page, $guid = 0) {
 	
 
 	$body = elgg_view_layout('degust_one_sidebar', $params);
-        echo $body;
+        //echo $body;
 
-	//echo elgg_view_page($title, $body);
+	echo elgg_view_page($title, $body,'overlay');
 }
 
 

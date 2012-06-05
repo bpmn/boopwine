@@ -25,9 +25,9 @@ function degust_init(){
 	elgg_extend_view('css/elgg', 'degusts/css');
         
 	//elgg_register_js('elgg.degust', 'js/degusts/degust.js', 'footer');
-        //$url = 'mod/degusts/views/default/js/degusts/degust.js';
-	//elgg_register_js('elgg.degust', $url, 'footer');
-	//elgg_load_js('elgg.degust');
+        $url = 'mod/degusts/views/default/js/degusts/degust.js';
+	elgg_register_js('elgg.degust', $url, 'footer');
+	elgg_load_js('elgg.degust');
         //elgg_extend_view('js/elgg', 'degusts/js');
 };
 

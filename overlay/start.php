@@ -12,9 +12,11 @@ elgg_register_event_handler('init', 'system', 'overlay_init');
 
 function overlay_init() {
 	// both register the JavaScript file and tell Elgg to load it on every page
-	$url = 'mod/overlay/vendors/jquery_tools/jquery.tools.min.js';
-	elgg_register_js('jquery.tools', $url);
-	elgg_load_js('jquery.tools');
+	//$url = 'mod/overlay/vendors/jquery_tools/jquery.tools.min.js';
+        $url = 'mod/overlay/vendors/nyromodal/jquery.nyroModal.custom.min.js';
+    
+	elgg_register_js('nyro.modal', $url);
+	elgg_load_js('nyro.modal');
 
 	// add our custom CSS and the JavaScript we need to initialize the tooltips
 	elgg_extend_view('js/elgg', 'overlay/js');
