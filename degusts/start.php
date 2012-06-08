@@ -29,6 +29,10 @@ function degust_init(){
 	elgg_register_js('elgg.degust', $url, 'footer');
 	elgg_load_js('elgg.degust');
         //elgg_extend_view('js/elgg', 'degusts/js');
+        
+        
+        $action_base = elgg_get_plugins_path() . 'degusts/actions/degusts';
+	elgg_register_action("degusts/edit", "$action_base/edit.php");
 };
 
 /**
