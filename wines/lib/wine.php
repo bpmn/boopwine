@@ -233,10 +233,16 @@ function wine_handle_invitations_page() {
  *
  * @param int $guid Group entity GUID
  */
-function wine_handle_profile_page($guid) {
+function wine_handle_profile_page($guid,$annee) {
 	elgg_set_page_owner_guid($guid);
 
 	elgg_push_context('wine_profile');
+        
+        
+        if (!$annee)
+            $annee=(int)2009;
+        
+        set_input('annee',$annee);
 
 	// turn this into a core function
 	global $autofeed;
@@ -480,8 +486,9 @@ function wine_register_profile_buttons($wine) {
         //elgg_load_js('lightbox');
         //elgg_load_css('lightbox');
         
-        $url = filter_tags(elgg_get_site_url() . "degust/add/{$wine->getGUID()}");
-        $actions[$url] = 'degust:add';
+        $annee=get_input("annee");
+        $url = elgg_normalize_url("degust/add/{$wine->getGUID()}/{$annee}");
+        $actions[$url] = elgg_echo('degust:add');
         
 
 	if ($actions) {

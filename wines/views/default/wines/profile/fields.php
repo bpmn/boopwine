@@ -15,6 +15,12 @@ if (is_array($profile_fields) && count($profile_fields) > 0) {
 		if ($key == 'name') {
 			continue;
 		}
+                
+                // do not show the vintage option.
+                if ($key == 'vintage') {
+			continue;
+		}
+           
 
 		$value = $wine->$key;
 		if (empty($value)) {
@@ -41,7 +47,6 @@ if (is_array($profile_fields) && count($profile_fields) > 0) {
 	}
 
         
-        //elgg_load_js('elgg.degust');
 } ?>
 
 

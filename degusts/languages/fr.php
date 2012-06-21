@@ -147,7 +147,12 @@ $french = array(
     'degust:evolution:mature' => 'mature',
     'degust:evolution:evolue' => 'evolué',
     'degust:evolution:use' => 'usé',
-
+    
+    'degust:module:title'=> "Millésime %s",
+    'degust:post'=>"dégustation postée %s par %s",
+    
+    'degust:link'=>"voir la fiche",
+    
 );
 
 add_translation("fr", $french);

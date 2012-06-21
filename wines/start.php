@@ -120,6 +120,7 @@ function wine_fields_setup() {
                 'maker'=>'text',            //vigneron
                 'kind'=>'dropdown',         //style de vin blanc, rouge, moelleux
                 'soil'=>'text',             //sol
+                'vintage'=>'radio',
                 'country'=>'text'           //pays
 		//'website' => 'url',
  
@@ -233,7 +234,7 @@ function wine_page_handler($page) {
 			wine_handle_edit_page('edit', $page[1]);
 			break;
 		case 'profile':
-			wine_handle_profile_page($page[1]);
+			wine_handle_profile_page($page[1],$page[3]);
 			break;
 		case 'activity':
 			wine_handle_activity_page($page[1]);

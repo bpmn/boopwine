@@ -7,6 +7,7 @@
 
 if (!elgg_extract('entity', $vars, null,false)){
     $container=get_entity($vars['container_guid']);
+    $annee=elgg_extract('annee', $vars, null,false);
     if (!($container instanceof ElggGroup))
        echo 'erreur'; 
 } else {
@@ -14,8 +15,9 @@ if (!elgg_extract('entity', $vars, null,false)){
     $container=get_entity($degust->container_guid);  
 }
 
-$degust_profile_fields = elgg_get_config('degust');
 
+$degust_profile_fields = elgg_get_config('degust');
+$annee=get_input('annee');
 
 
 /*initialisation des options pour les couleurs en fonction du type de vins (blanc, rouge etc..)*/
@@ -76,10 +78,19 @@ foreach ($degust_profile_fields as $section => $elts) {
 
 if (isset($vars['entity'])) {
 	echo elgg_view('input/hidden', array(
-		'name' => 'wine_guid',
+		'name' => 'degust_guid',
 		'value' => $vars['entity']->getGUID(),
 	));
 }
+echo elgg_view('input/hidden', array(
+		'name' => 'container_guid',
+		'value' => $container->getGUID(),
+	));
+
+echo elgg_view('input/hidden', array(
+		'name' => 'annee',
+		'value' => $annee
+	));
 
 echo elgg_view('input/submit', array('value' => elgg_echo('save')));
 

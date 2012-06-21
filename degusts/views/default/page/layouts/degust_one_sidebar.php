@@ -30,8 +30,8 @@ $nav = elgg_extract('nav', $vars, elgg_view('navigation/breadcrumbs'));
             
 </div>
 
-	<div class="elgg-main elgg-body">
-            
+	<div class="degust-main ">
+          
            	<?php
 			//echo $nav;
 			

@@ -24,6 +24,8 @@ function degust_init(){
         //extend some views
 	elgg_extend_view('css/elgg', 'degusts/css');
         
+        elgg_extend_view('wines/tool_latest', 'degusts/module');
+        
 	//elgg_register_js('elgg.degust', 'js/degusts/degust.js', 'footer');
         $url = 'mod/degusts/views/default/js/degusts/degust.js';
 	elgg_register_js('elgg.degust', $url, 'footer');
@@ -31,8 +33,14 @@ function degust_init(){
         //elgg_extend_view('js/elgg', 'degusts/js');
         
         
+        elgg_register_plugin_hook_handler('register', 'menu:entity', 'degust_entity_menu_setup');
+        
+        
         $action_base = elgg_get_plugins_path() . 'degusts/actions/degusts';
 	elgg_register_action("degusts/edit", "$action_base/edit.php");
+        
+        // Register URL handlers for wine
+	elgg_register_entity_url_handler('object', 'degust', 'degust_url');
 };
 
 /**
@@ -120,6 +128,7 @@ function degust_page_handler($page) {
 	
 		case 'add':
                         set_input('entity_guid',$page[1]);
+                        set_input('annee',$page[2]);
 			degust_handle_edit_page('add');
 			break;
 		case 'edit':
@@ -134,6 +143,91 @@ function degust_page_handler($page) {
 			return false;
 	}
 	return true;
+}
+
+
+
+/**
+ * Populates the ->getUrl() method for wine objects
+ *
+ * @param ElggEntity $entity File entity
+ * @return string File URL
+ */
+function degust_url($entity) {
+	$title = elgg_get_friendly_title($entity->name);
+
+	return "degust/profile/{$entity->guid}/$title";
+}
+
+
+
+
+/**
+ * Add links/info to entity menu particular to wine entities
+ */
+function degust_entity_menu_setup($hook, $type, $return, $params) {
+	if (elgg_in_context('widgets')) {
+		return $return;
+	}
+
+	$entity = $params['entity'];
+	$handler = elgg_extract('handler', $params, false);
+	if ($handler != 'degust') {
+		return $return;
+	}
+
+	foreach ($return as $index => $item) {
+		if (in_array($item->getName(), array('access', 'likes', 'edit', 'delete'))) {
+			unset($return[$index]);
+		}
+	}
+
+	// membership type
+	$membership = $entity->membership;
+	if ($membership == ACCESS_PUBLIC) {
+		$mem = elgg_echo("wine:open");
+	} else {
+		$mem = elgg_echo("wine:closed");
+	}
+	$options = array(
+		'name' => 'membership',
+		'text' => $mem,
+		'href' => false,
+		'priority' => 100,
+	);
+	$return[] = ElggMenuItem::factory($options);
+
+	// number of members
+	$num_members = get_group_members($entity->guid, 10, 0, 0, true);
+	$members_string = elgg_echo('wine:member');
+	$options = array(
+		'name' => 'members',
+		'text' => $num_members . ' ' . $members_string,
+		'href' => false,
+		'priority' => 200,
+	);
+	$return[] = ElggMenuItem::factory($options);
+
+	// feature link
+	if (elgg_is_admin_logged_in()) {
+		if ($entity->featured_group == "yes") {
+			$url = "action/wine/featured?wine_guid={$entity->guid}&action_type=unfeature";
+			$wording = elgg_echo("wine:makeunfeatured");
+		} else {
+			$url = "action/wine/featured?wine_guid={$entity->guid}&action_type=feature";
+			$wording = elgg_echo("wine:makefeatured");
+		}
+		$options = array(
+			'name' => 'feature',
+			'text' => $wording,
+			'href' => $url,
+			'priority' => 300,
+			'is_action' => true
+		);
+		$return[] = ElggMenuItem::factory($options);
+	}
+
+	return $return;
 }
 
 ?>

@@ -44,15 +44,24 @@ if ($wine_profile_fields > 0) {
 		echo elgg_echo("wine:{$shortname}");
 		echo "</label>$line_break";
                 
-              switch ($shortname) {
+              switch ($shortname) {         
+                case 'vintage':
+                     echo elgg_view("input/{$valtype}", array(
+                            'name' => $shortname,
+                            'value' => $vars['entity']->$shortname,          
+                            'options' => array(
+				elgg_echo('wine:v') =>'v' ,
+				elgg_echo('wine:nv') =>'nv' ,
+                            )));
+                     break;
 		case 'kind':
                      echo elgg_view("input/{$valtype}", array(
                             'name' => $shortname,
                             'value' => $vars['entity']->$shortname,          
                             'options_values' => array(
-				red => elgg_echo('wine:red'),
-				white => elgg_echo('wine:white'),
-                                rose => elgg_echo('wine:rose')
+				'red' => elgg_echo('wine:red'),
+				'white' => elgg_echo('wine:white'),
+                                'rose' => elgg_echo('wine:rose')
                             )));
                      break;
                 default:

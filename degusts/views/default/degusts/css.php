@@ -18,23 +18,29 @@
                                     padding: 2%;
                                     } 
  
-.degust-layout-one-sidebar {
-    background-attachment: scroll;
-    background-clip: border-box;
-    background-color: transparent;
-    background-origin: padding-box;
-    background-position: right top;
-    background-repeat: repeat-y;
-    background-size: auto auto;
+
+.degust-main{
+    margin-bottom: 5px;
+    margin-left: 5px;
+    margin-right: 10px;
    
 }
+
+
+.degust-side-head { height: 120px;}
+
+.degust-side-head img {
+            margin-right: 3px;
+            float:left;
+            }
+
 
 .degust-sidebar {
     float: right;
     margin-bottom: 5px;
     margin-left: 5px;
     margin-right: 10px;
-    margin-top: 10px;
+    margin-top: 8px;
     padding-bottom:10px;
     padding-left: 10px;
     padding-right: 10px;
@@ -42,7 +48,7 @@
     position: relative;
     border-width: 1px;
     border-style: solid;
-    width: 280px;
+    width: 320px;
 }
 
 

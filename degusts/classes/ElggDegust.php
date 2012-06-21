@@ -4,8 +4,7 @@
  * Extended class to override the time_created
  * 		
  * Attributs
- * @property string     $title  Nom Domaine
- * @property string     $description Cuvée
+ * @property int        $annee
  * @property string     $subtype degust
  * @property string     $time_updated A UNIX timestamp of when the entity was last updated (automatically updated on save)
  * 
@@ -37,7 +36,7 @@
  * 
  */
 
-class ElggBlog extends ElggObject {
+class ElggDegust extends ElggObject {
 
 	/**
 	 * Set subtype to degust.

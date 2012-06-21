@@ -32,6 +32,10 @@ $english = array(
         'wine:kind'=>'Type',             //style de vin blanc, rouge, moelleux
         'wine:soil'=>'Soil',             //sol
         'wine:country'=>'Country' ,         //pays
+        
+        'wine:vintage'=>'',
+        'wine:v'=>'Millésimé (le sélection du millésime se fait dans le profile du vin une fois crée)',
+        'wine:nv'=>'Non Millésimé',
     
         'wine:red'=>'Red',             //style de vin blanc, rouge, moelleux
         'wine:white'=>'White',             //sol

@@ -34,6 +34,10 @@ $french = array(
         'wine:soil'=>'Composition du sol',     //sol          
         'wine:country'=>'Pays' ,               //pays
     
+        'wine:vintage'=>'',
+        'wine:v'=>'Millésimé (le sélection du millésime se fait dans le profile du vin une fois crée)',
+        'wine:nv'=>'Non Millésimé',
+        
         'wine:red'=>'Rouge',             
         'wine:white'=>'Blanc',             
         'wine:rose'=>'Rosé' ,         
@@ -125,9 +129,9 @@ $french = array(
 	wine discussion
 	*/
 	'discussion' => 'Discussion',
-	'discussion:add' => 'Add discussion topic',
-	'discussion:latest' => 'Latest discussion',
-	'discussion:wine' => 'Brèves de comptoire',
+	'discussion:add' => 'Ajouter une brève de comptoir',
+	'discussion:latest' => 'Les dernières brèves de comptoir',
+	'discussion:wine' => 'Brèves de comptoir',
 	'discussion:none' => 'No discussion',
 	'discussion:reply:title' => 'Reply by %s',
 
