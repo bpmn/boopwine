@@ -31,6 +31,7 @@ $poster_link = elgg_view('output/url', array(
 $degust_link = elgg_view('output/url', array(
 	'href' => $degust->getURL(),
 	'text' => elgg_echo('degust:link'),
+        'class'=>'elgg-overlay',
 	'is_trusted' => true,
 ));
 

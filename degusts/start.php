@@ -34,10 +34,11 @@ function degust_init(){
         
         
         elgg_register_plugin_hook_handler('register', 'menu:entity', 'degust_entity_menu_setup');
-        
+        elgg_register_plugin_hook_handler('permissions_check', 'object', 'degust_override_permissions');
         
         $action_base = elgg_get_plugins_path() . 'degusts/actions/degusts';
 	elgg_register_action("degusts/edit", "$action_base/edit.php");
+        elgg_register_action("degusts/delete", "$action_base/delete.php");
         
         // Register URL handlers for wine
 	elgg_register_entity_url_handler('object', 'degust', 'degust_url');
@@ -230,4 +231,17 @@ function degust_entity_menu_setup($hook, $type, $return, $params) {
 	return $return;
 }
 
+
+function degust_override_permissions($hook, $entity_type, $returnvalue, $params){
+    $degust=elgg_extract('entity', $params);
+    $user=elgg_extract('user', $params);
+    if ($degust->getSubtype()== 'degust'){
+        $container_entity = get_entity($degust->container_guid);
+	if ($container_entity->canEdit($user->getGUID()) && ($degust->getOwnerGUID()!= $user->getGUID())) {
+			return false;
+	}
+    }
+    
+    
+}
 ?>

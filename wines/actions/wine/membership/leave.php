@@ -6,7 +6,7 @@
  */
 
 $user_guid = get_input('user_guid');
-$group_guid = get_input('group_guid');
+$wine_guid = get_input('wine_guid');
 
 $user = NULL;
 if (!$user_guid) {
@@ -15,22 +15,22 @@ if (!$user_guid) {
 	$user = get_entity($user_guid);
 }
 
-$group = get_entity($group_guid);
+$wine = get_entity($wine_guid);
 
-elgg_set_page_owner_guid($group->guid);
+elgg_set_page_owner_guid($wine->guid);
 
-if (($user instanceof ElggUser) && ($group instanceof ElggGroup)) {
-	if ($group->getOwnerGUID() != elgg_get_logged_in_user_guid()) {
-		if ($group->leave($user)) {
-			system_message(elgg_echo("groups:left"));
+if (($user instanceof ElggUser) && ($wine instanceof ElggGroup)) {
+	if ($wine->getOwnerGUID() != elgg_get_logged_in_user_guid()) {
+		if ($wine->leave($user)) {
+			system_message(elgg_echo("wine:left"));
 		} else {
-			register_error(elgg_echo("groups:cantleave"));
+			register_error(elgg_echo("wine:cantleave"));
 		}
 	} else {
-		register_error(elgg_echo("groups:cantleave"));
+		register_error(elgg_echo("wine:cantleave"));
 	}
 } else {
-	register_error(elgg_echo("groups:cantleave"));
+	register_error(elgg_echo("wine:cantleave"));
 }
 
 forward(REFERER);

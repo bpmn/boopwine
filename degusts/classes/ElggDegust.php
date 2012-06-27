@@ -4,12 +4,13 @@
  * Extended class to override the time_created
  * 		
  * Attributs
- * @property int        $annee
+ * 
  * @property string     $subtype degust
  * @property string     $time_updated A UNIX timestamp of when the entity was last updated (automatically updated on save)
  * 
  * MetaData
  * // Visuel
+ * @property int        $annee
  * @property int        $couleur_intensity couleur.             
  * @property string     $couleur couleur.
  * @property string     $reflet couleur.

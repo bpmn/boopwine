@@ -90,7 +90,7 @@ function degust_handle_edit_page($page, $guid = 0) {
      
         
         gatekeeper();
-	$guid=(int)get_input(entity_guid);
+	$guid=(int)get_input('entity_guid');
 	if ($page == 'add') {
 		$wine = get_entity($guid);
 		if (!($wine instanceof ElggGroup)) {
@@ -124,13 +124,13 @@ function degust_handle_edit_page($page, $guid = 0) {
 		
                 
 	} else {
-		$title = elgg_echo("degust:edit");
+		//$title = elgg_echo("degust:edit");
 		$degust = get_entity($guid);
 
 		if ($degust && $degust->canEdit()) {
-			//elgg_set_page_owner_guid($wine->getGUID());
-			elgg_push_breadcrumb($degust->title, $degust->getURL());
-			elgg_push_breadcrumb($title);
+			elgg_set_page_owner_guid();
+			//elgg_push_breadcrumb($degust->title, $degust->getURL());
+			//elgg_push_breadcrumb($title);
 			$content = elgg_view("degusts/edit", array('entity' => $degust));
 		} else {
 			$content = elgg_echo('degust:noaccess');
@@ -164,7 +164,7 @@ function degust_handle_edit_page($page, $guid = 0) {
  * @param int $guid Group entity GUID
  */
 function degust_handle_profile_page($guid) {
-	//elgg_set_page_owner_guid($guid);
+	elgg_set_page_owner_guid($guid);
 	elgg_push_context('degust_profile');
 
 	// turn this into a core function
@@ -178,10 +178,21 @@ function degust_handle_profile_page($guid) {
 	}
 
 	//elgg_push_breadcrumb($wine->name);
+        
+        if ($degust->canEdit()){
+                        $url = elgg_normalize_url("degust/edit/{$degust->getGUID()}");
+                        elgg_register_menu_item('edit_degust', array(
+				'name' => 'degust:edit',
+				'href' => $url,
+				'text' => elgg_echo('degust:edit'),
+				'link_class' => 'elgg-button elgg-button-action elgg-overlay',
+                                
+                                //'rel'=>'#overlay',
+			));}
 
 	$content = elgg_view('degusts/profile/layout', array('entity' => $degust));
-	
-	$sidebar = elgg_view_comments($degust);
+        $sidebar = elgg_view('degusts/profile/sidebar', array('entity' => $degust));
+
 		
 
 	$params = array(
@@ -196,7 +207,7 @@ function degust_handle_profile_page($guid) {
 
 	$body = elgg_view_layout('degust_one_sidebar', $params);
         //echo $body;
-        echo elgg_view_page($title, $body);
+        echo elgg_view_page($title, $body,'overlay');
 	
 }
 

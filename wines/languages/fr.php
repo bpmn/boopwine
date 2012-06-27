@@ -24,7 +24,7 @@ $french = array(
 	'wine:icon' => 'wine icon (leave blank to leave unchanged)',
 	'wine:name' => 'Nom/Château/Domaine',
 	'wine:username' => 'wine short name (displayed in URLs, alphanumeric characters only)',
-	'wine:description' => 'Apellation',
+	'wine:description' => 'Appellation',
     
         'wine:cuvee'=>'Cuvée',            
 	'wine:region' => 'Région',        

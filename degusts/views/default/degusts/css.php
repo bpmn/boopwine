@@ -17,7 +17,16 @@
                                     border-style: solid;
                                     padding: 2%;
                                     } 
- 
+ #degust-profile-box {
+ display:inline-block;
+ width:100%;
+        
+ }
+ .degust-profile-sections {    
+         border-color: black;
+         border-width: 1px;
+         border-style: solid;
+         padding: 2%;}
 
 .degust-main{
     margin-bottom: 5px;

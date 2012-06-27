@@ -6,16 +6,18 @@
 
 
 
-
 elgg.provide('elgg.overlay');
 
 elgg.overlay.init = function() {
     
  
-     $(function() {
+    /* $(function() {
 	$("a[rel*=overlay]").nyroModal();
+	});*/
+    
+     $(function() {
+	$(".elgg-overlay").nyroModal();
 	});
-
    
 }
 

@@ -47,6 +47,7 @@ if (($degust_guid) && (!$degust->canEdit())) {
 // Assume we can edit or this is a new wine
 if (sizeof($input) > 0) {
 	foreach($input as $shortname => $value) {
+            if ($value)
 		$degust->$shortname = $value;
 	}
 

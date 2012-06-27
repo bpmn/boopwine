@@ -464,6 +464,11 @@ function wine_register_profile_buttons($wine) {
 
 	// group members
 	if ($wine->isMember(elgg_get_logged_in_user_entity())) {
+            $annee=get_input("annee");
+            $url = elgg_normalize_url("degust/add/{$wine->getGUID()}/{$annee}");
+            $url = elgg_add_action_tokens_to_url($url);
+            $actions[$url] = elgg_echo('degust:add');
+            
 		if ($wine->getOwnerGUID() != elgg_get_logged_in_user_guid()) {
 			// leave
 			$url = elgg_get_site_url() . "action/wines/leave?wine_guid={$wine->getGUID()}";
@@ -486,9 +491,7 @@ function wine_register_profile_buttons($wine) {
         //elgg_load_js('lightbox');
         //elgg_load_css('lightbox');
         
-        $annee=get_input("annee");
-        $url = elgg_normalize_url("degust/add/{$wine->getGUID()}/{$annee}");
-        $actions[$url] = elgg_echo('degust:add');
+
         
 
 	if ($actions) {
@@ -500,7 +503,8 @@ function wine_register_profile_buttons($wine) {
 				'href' => $url,
 				'text' => elgg_echo($text),
 				'link_class' => 'elgg-button elgg-button-action elgg-overlay',
-                                'rel'=>'#overlay',
+                                
+                                //'rel'=>'#overlay',
 			));}
                     
                     else{

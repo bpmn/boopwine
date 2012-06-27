@@ -53,7 +53,7 @@ foreach ($degust_profile_fields as $section => $elts) {
             echo '</label>';
   
             $variables=array('name'=>$shortname,
-                        'value'=>$var['entity']->$shortname,
+                        'value'=>$degust->$shortname,
                         'align'=>'horizontal',
                         'options'=>$options,
                         'option_values'=>$option_values,
@@ -79,7 +79,7 @@ foreach ($degust_profile_fields as $section => $elts) {
 if (isset($vars['entity'])) {
 	echo elgg_view('input/hidden', array(
 		'name' => 'degust_guid',
-		'value' => $vars['entity']->getGUID(),
+		'value' => $degust->getGUID(),
 	));
 }
 echo elgg_view('input/hidden', array(
@@ -94,12 +94,14 @@ echo elgg_view('input/hidden', array(
 
 echo elgg_view('input/submit', array('value' => elgg_echo('save')));
 
-if (isset($vars['entity'])) {
-	$delete_url = 'action/wine/delete?guid=' . $vars['entity']->getGUID();
+
+
+if (isset($vars['entity']) && $degust->canEdit()) {
+	$delete_url = 'action/degusts/delete?guid=' . $vars['entity']->getGUID();
 	echo elgg_view('output/confirmlink', array(
-		'text' => elgg_echo('wine:delete'),
+		'text' => elgg_echo('degust:delete'),
 		'href' => $delete_url,
-		'confirm' => elgg_echo('wine:deletewarning'),
+		'confirm' => elgg_echo('degust:deletewarning'),
 		'class' => 'elgg-button elgg-button-delete float-alt',
 	));
 }

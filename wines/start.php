@@ -639,7 +639,7 @@ function wine_get_invited_wine($user_guid, $return_guids = FALSE) {
  * @param ElggUser  $user
  * @return bool
  */
-function wine_join_group($wine, $user) {
+function wines_join_wine($wine, $user) {
 
 	// access ignore so user can be added to access collection of invisible wine
 	$ia = elgg_set_ignore_access(TRUE);
