@@ -128,7 +128,7 @@ function degust_handle_edit_page($page, $guid = 0) {
 		$degust = get_entity($guid);
 
 		if ($degust && $degust->canEdit()) {
-			elgg_set_page_owner_guid();
+			elgg_set_page_owner_guid($guid);
 			//elgg_push_breadcrumb($degust->title, $degust->getURL());
 			//elgg_push_breadcrumb($title);
 			$content = elgg_view("degusts/edit", array('entity' => $degust));

@@ -7,17 +7,18 @@
 
 if (!elgg_extract('entity', $vars, null,false)){
     $container=get_entity($vars['container_guid']);
-    $annee=elgg_extract('annee', $vars, null,false);
+    $annee=get_input('annee');
     if (!($container instanceof ElggGroup))
        echo 'erreur'; 
 } else {
     $degust=elgg_extract('entity', $vars, null);
-    $container=get_entity($degust->container_guid);  
+    $container=get_entity($degust->container_guid);
+    $annee=$degust->annee;
 }
 
 
 $degust_profile_fields = elgg_get_config('degust');
-$annee=get_input('annee');
+
 
 
 /*initialisation des options pour les couleurs en fonction du type de vins (blanc, rouge etc..)*/
