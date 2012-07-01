@@ -38,6 +38,7 @@ $defaults = array(
 );
 
 $vars = array_merge($defaults, $vars);
+$myid = $vars['name'];
 
 $class = "elgg-input-checkboxes elgg-{$vars['align']}";
 if (isset($vars['class'])) {
@@ -82,9 +83,15 @@ if (count($vars['options']) > 0) {
 		$input_vars['checked'] = in_array(elgg_strtolower($value), $values);
 		$input_vars['value']   = $value;
 		
-		$input = elgg_view('input/checkbox', $input_vars);
+                
+		//$input = elgg_view('input/checkbox', $input_vars);
+		//echo "<li><label>$input$label</label></li>";
 
-		echo "<li><label>$input$label</label></li>";
+                echo "<input name=\"$input\" id=\"$myid.$label\" type=\"checkbox\" />";               
+                echo "<label for=\"$myid.$label\">$input$label</label>";
+
+                 
+                 
 	}
 	echo '</ul>';
 }

@@ -9,7 +9,7 @@
 
 elgg.register_hook_handler('init', 'system', function() {
     $( "#tabb" ).tabs();
-    
+        $( "#phil_select").button();
 });
 
 

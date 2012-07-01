@@ -39,6 +39,11 @@ for ($note=1;$note<=20;$note++) {
 
 <?php
 
+
+
+                      
+            
+// creation de la liste
 foreach ($degust_profile_fields as $section => $elts) {
      echo '<div><fieldset id="testfield"><legend>';
      echo elgg_echo("degust:{$section}");
@@ -48,24 +53,37 @@ foreach ($degust_profile_fields as $section => $elts) {
          eval('$option_values=$option_values_'.$shortname.';');
          
          if ($options || $option_values || $valtype=='text' || $valtype=='longtext'){
+            
+            echo "<center>" ;
             echo '<label>';
             echo elgg_echo("degust:{$shortname}");
             echo '</label>';
-  
+            echo "</center>" ;
+
+
             $variables=array('name'=>$shortname,
                         'value'=>$degust->$shortname,
                         'align'=>'horizontal',
                         'options'=>$options,
                         'option_values'=>$option_values,
-                        'class'=>'input-degust',
-                        'id'=>$shortname);
-         
+                        'class'=>'input-degust'
+              );
+            
+            echo '<div id="button_select'.$shortname.'">';
          
             echo elgg_view("input/{$valtype}",$variables);
+            
+            echo "</div>";
+
+            
+            
             }
          
          }
+           
 
+         
+         
     echo '</fieldset>
 </div>';          
 }	

@@ -29,6 +29,7 @@ foreach ($degust_profile_fields as $section => $elts) {
             echo '<label>';
             echo elgg_echo("degust:{$shortname}").': ';
             echo '</label>';
+
             $val=$degust->$shortname;
             
             if ($valtype=='text' || $valtype=='longtext' || $shortname=='note'){
@@ -39,14 +40,13 @@ foreach ($degust_profile_fields as $section => $elts) {
                      foreach($val as $elt){
                         $value[]=elgg_echo("degust:$shortname:$elt");
                      }
-                
             }else{
                     $value=elgg_echo("degust:$shortname:$val");
                  }
             }
                 
                
-                    
+        
             
             $variables=array(
                         'value'=>$value,

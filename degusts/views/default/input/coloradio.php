@@ -28,6 +28,8 @@ $defaults = array(
 
 $vars = array_merge($defaults, $vars);
 
+$myid = $vars['name'];
+
 $id = '';
 if (isset($vars['id'])) {
 	$id = "id=\"{$vars['id']}\"";
@@ -40,12 +42,15 @@ if (isset($vars['class'])) {
 	unset($vars['class']);
 }
 unset($vars['align']);
-$vars['class'] = 'elgg-input-radio';
+//$vars['class'] = 'elgg-input-radio';
+//unset($vars['class']);
+
 
 if (is_array($vars['value'])) {
 	$vars['value'] = array_map('elgg_strtolower', $vars['value']);
 } else {
 	$vars['value'] = array(elgg_strtolower($vars['value']));
+
 }
 
 $options = $vars['options'];
@@ -55,14 +60,14 @@ $value = $vars['value'];
 unset($vars['value']);
 
 if ($options && count($options) > 0) {
-	echo "<ul class=\"$class\" $id>";
+	//echo "<ul class=\"$class\" $id>";
 	foreach ($options as $label => $option) {
 
 		$vars['checked'] = in_array(elgg_strtolower($option), $value);
 		$vars['value'] = $option;
 
 		$attributes = elgg_format_attributes($vars);
-
+                
 		// handle indexed array where label is not specified
 		// @deprecated 1.8 Remove in 1.9
 		if (is_integer($label)) {
@@ -70,8 +75,15 @@ if ($options && count($options) > 0) {
 			$label = $option;
 		}
 
-		echo "<li><label><input type=\"radio\" $attributes />$label</label></li>";
+		//ANCIEN CODE 
+                //echo "<li><label><input type=\"radio\" $attributes />$label</label></li>";
+
+                echo "<input id=\"$myid.$label\" type=\"radio\" $attributes />";               
                 
+                echo "<label for=\"$myid.$label\">";
+                
+                echo "$label</label>";
+
 	}
-	echo '</ul>';
+	//echo '</ul>';
 }
