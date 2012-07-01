@@ -14,9 +14,18 @@ if (!$degust) {
 
 $poster = $degust->getOwnerEntity();
 $wine = $degust->getContainerEntity();
-if ($degust->comment){
-    $excerpt = ($degust->comment).'</br>';}
-    elgg_view('output/notedropdown',array('value'=>$degust->note));
+
+if (isset($degust->comment)){
+    $excerpt = ($degust->comment).'</br>';
+    
+    
+    }elseif (isset($degust->arome)) {
+    $excerpt = ($degust->arome).'</br>';
+    
+    }elseif (isset($degust->accord)) {
+    $excerpt = ($degust->arome).'</br>';    
+    }
+    
     
     
 
@@ -28,10 +37,18 @@ $poster_link = elgg_view('output/url', array(
 ));
 
 
+
+$title_link=$wine->name;
+if (isset($wine->cuvee))
+    $title_link.= "  \"{$wine->cuvee}\"";
+if (isset($degust->annee))
+    $title_link.= "  {$degust->annee}";
+
 $degust_link = elgg_view('output/url', array(
 	'href' => $degust->getURL(),
 	'text' => elgg_echo('degust:link'),
         'class'=>'elgg-overlay',
+        'title'=> $title_link,
 	'is_trusted' => true,
 ));
 
