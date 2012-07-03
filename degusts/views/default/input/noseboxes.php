@@ -62,8 +62,11 @@ $input_vars = $vars;
 $input_vars['default'] = false;
 if ($vars['name']) {
 	$input_vars['name'] = "{$vars['name']}[]";
+        
 }
 unset($input_vars['align']);
+unset($input_vars['internalname']);
+unset($input_vars['internalid']);
 unset($input_vars['options']);
 
 if (count($vars['options']) > 0) {
@@ -72,26 +75,31 @@ if (count($vars['options']) > 0) {
 		echo "<input type=\"hidden\" name=\"{$vars['name']}\" value=\"{$vars['default']}\" />";
 	}
 
-	echo "<ul class=\"$class\" $id>";
+	//echo "<ul class=\"$class\" $id>";
 	foreach ($vars['options'] as $label => $value) {
 		// @deprecated 1.8 Remove in 1.9
 		if (is_integer($label)) {
 			elgg_deprecated_notice('$vars[\'options\'] must be an associative array in input/checkboxes', 1.8);
 			$label = $value;
 		}
-
+                
+                $id=$myid.$value;
+                
 		$input_vars['checked'] = in_array(elgg_strtolower($value), $values);
 		$input_vars['value']   = $value;
-		
+		$input_vars['id']=$id;
+                $attributes = elgg_format_attributes($input_vars);
+              
+		$input = elgg_view('input/checkbox', $input_vars);
                 
-		//$input = elgg_view('input/checkbox', $input_vars);
 		//echo "<li><label>$input$label</label></li>";
-
-                echo "<input name=\"$input\" id=\"$myid.$label\" type=\"checkbox\" />";               
-                echo "<label for=\"$myid.$label\">$input$label</label>";
-
+                echo "<input type=\"checkbox\" {$attributes} />";               
+               
+              
+                //echo "<li>{$input}<label for=\"$id\">$label</label></li>";
+                echo "<label for=\"$id\">$label</label>";
                  
                  
 	}
-	echo '</ul>';
+	//echo '</ul>';
 }
