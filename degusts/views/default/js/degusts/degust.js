@@ -9,10 +9,13 @@ elgg.provide('elgg.degust');
 elgg.degust.init = function() {
 	// only apply this to acronym tags
 	
-        	$( "#tabs" ).tabs();
+        	//$( "#tabs" ).tabs();
 //                $( "#button_selectcouleur" ).buttonset().find('label').css('width', '25%');
 
-                // visuelle
+               
+             
+           /*  var degust_button = function() {
+             // visuelle
                 $( "#button_selectcouleur_intensity" ).buttonset().find('label').width(610/4).css("font-size", "100%").css("font-weight", "normal");
 
                 $( "#button_selectcouleur" ).buttonset().find('label').width(610/5).css("font-size", "100%").css("font-weight", "normal");
@@ -36,7 +39,9 @@ elgg.degust.init = function() {
                 // final
                 $( "#button_selectevolution" ).buttonset().find('label').width(610/6).css("font-size", "100%").css("font-weight", "normal");
                 
-
+              }*/
+              
+              
                 
                 //change colors of indivdual buttons in buttonsets
                 
