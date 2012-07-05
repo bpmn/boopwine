@@ -12,7 +12,7 @@ elgg.overlay.init = function() {
     
     
     
-                 var degust_button = function() {
+  var degust_button = function() {
              // visuelle
                 $( "#button_selectcouleur_intensity" ).buttonset().find('label').width(610/4).css("font-size", "100%").css("font-weight", "normal");
 

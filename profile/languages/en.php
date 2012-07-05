@@ -5,7 +5,8 @@
 
 $english = array(
 	'profile' => 'Profile',
-	'profile:notfound' => 'Sorry. We could not find the requested profile.',
+	'profile:notfound' => 'Désolé. Nous ne pouvons trouver le profile demandé',
+        'profile:pro'=> 'Do you work in wine or restaurant business ?'
 
 );
 
